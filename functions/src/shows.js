@@ -20,3 +20,16 @@ export async function addShow (req, res) {
   //res.status(201).send({message: "Show Added!"})
   getShows(req,res)
 }
+
+export async function deleteShow (req, res) {
+  const {showId} = req.params
+  await coll.doc(showId).delete()
+  getShows(req, res)
+}
+
+export async function editShow (req, res) {
+  const { showId } = req.params
+  await coll.doc(showId).update(req.body)
+    .catch(err => res.status(500).send(err));
+  getShows(req, res)
+}

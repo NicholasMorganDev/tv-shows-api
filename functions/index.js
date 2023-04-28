@@ -2,7 +2,7 @@ import functions from "firebase-functions";
 import express from 'express';
 import cors from 'cors';
 import { login, signUp } from "./src/users.js";
-import { addShow, getShows } from "./src/shows.js";
+import { addShow, deleteShow, editShow, getShows } from "./src/shows.js";
 
 const app = express();
 
@@ -14,6 +14,8 @@ app.post('/login', login)
 
 app.get('/shows', getShows)
 app.post('/shows', addShow)
+app.delete('/shows/:showId', deleteShow)
+app.patch('/shows/:showId', editShow)
 
 app.listen(3000, () => {
   console.log('Listening on http://localhost:3000...')
